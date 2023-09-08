@@ -1,0 +1,33 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count = 0
+        prev_value = 0
+        
+        for char in s:
+            if char == 'I':
+                value = 1
+            elif char == 'V':
+                value = 5
+            elif char == 'X':
+                value = 10
+            elif char == 'L':
+                value = 50
+            elif char == 'C':
+                value = 100
+            elif char == 'D':
+                value = 500
+            elif char == 'M':
+                value = 1000
+            else:
+                raise ValueError("Invalid Roman numeral character")
+            
+            if value > prev_value:
+                count -= 2 * prev_value  # Subtract twice the previous value
+            count += value
+            prev_value = value
+        
+        return count
